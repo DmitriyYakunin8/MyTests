@@ -1,9 +1,13 @@
-function delay(ms) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve()
-        }, ms)
+function loadJson(url) {
+  return fetch(url)
+    .then(response => {
+      if (response.status == 200) {
+        return response.json();
+      } else {
+        throw new Error(response.status);
+      }
     })
-  }
+}
 
-  delay(3000).then(() => alert('выполнилось через 3 секунды'));
+loadJson('no-such-user.json') // (3)
+  .catch(alert); // Error: 404
