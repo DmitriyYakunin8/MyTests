@@ -1,13 +1,15 @@
-function loadJson(url) {
-  return fetch(url)
-    .then(response => {
-      if (response.status == 200) {
-        return response.json();
-      } else {
-        throw new Error(response.status);
-      }
-    })
+let cars = {
+    wheels: 4,
 }
 
-loadJson('no-such-user.json') // (3)
-  .catch(alert); // Error: 404
+let bmw = Object.create(cars, {
+    speed: {
+        value: 250,
+        enumerable: false
+    }
+})
+
+
+for (let key in bmw) {
+    console.log(key);
+}
